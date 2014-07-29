@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140329001424) do
+ActiveRecord::Schema.define(:version => 20140729003527) do
 
   create_table "availabilities", :force => true do |t|
     t.integer  "person_id"
@@ -65,24 +65,24 @@ ActiveRecord::Schema.define(:version => 20140329001424) do
   add_index "conference_users", ["user_id"], :name => "index_conference_users_on_user_id"
 
   create_table "conferences", :force => true do |t|
-    t.string   "acronym",                                                          :null => false
-    t.string   "title",                                                            :null => false
-    t.string   "timezone",                                   :default => "Berlin", :null => false
-    t.integer  "timeslot_duration",                          :default => 15,       :null => false
-    t.integer  "default_timeslots",                          :default => 4,        :null => false
-    t.integer  "max_timeslots",                              :default => 20,       :null => false
-    t.boolean  "feedback_enabled",                           :default => false,    :null => false
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.string   "acronym",                                       :null => false
+    t.string   "title",                                         :null => false
+    t.string   "timezone",                :default => "Berlin", :null => false
+    t.integer  "timeslot_duration",       :default => 15,       :null => false
+    t.integer  "default_timeslots",       :default => 4,        :null => false
+    t.integer  "max_timeslots",           :default => 20,       :null => false
+    t.boolean  "feedback_enabled",        :default => false,    :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "email"
     t.string   "program_export_base_url"
     t.string   "schedule_version"
-    t.boolean  "schedule_public",                            :default => false,    :null => false
+    t.boolean  "schedule_public",         :default => false,    :null => false
     t.string   "color"
     t.string   "ticket_type"
-    t.boolean  "event_state_visible",                        :default => true
-    t.text     "schedule_custom_css",     :limit => 2097152
-    t.text     "schedule_html_intro",     :limit => 2097152
+    t.boolean  "event_state_visible",     :default => true
+    t.text     "schedule_custom_css"
+    t.text     "schedule_html_intro"
   end
 
   add_index "conferences", ["acronym"], :name => "index_conferences_on_acronym"
@@ -255,6 +255,11 @@ ActiveRecord::Schema.define(:version => 20140329001424) do
     t.integer  "user_id"
     t.text     "note"
     t.boolean  "include_in_mailings", :default => false, :null => false
+    t.string   "twitter_name"
+    t.boolean  "cover_travel"
+    t.string   "airport_code"
+    t.string   "tshirt_size"
+    t.string   "linkedin"
   end
 
   add_index "people", ["email"], :name => "index_people_on_email"
@@ -348,16 +353,16 @@ ActiveRecord::Schema.define(:version => 20140329001424) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "versions", :force => true do |t|
-    t.string   "item_type",                          :null => false
-    t.integer  "item_id",                            :null => false
-    t.string   "event",                              :null => false
+    t.string   "item_type",       :null => false
+    t.integer  "item_id",         :null => false
+    t.string   "event",           :null => false
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
     t.integer  "conference_id"
     t.integer  "associated_id"
     t.string   "associated_type"
-    t.text     "object_changes",  :limit => 4194304
+    t.text     "object_changes"
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"

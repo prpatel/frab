@@ -64,7 +64,7 @@ en:
     bio: "Bio"
     abstract_hint: "One short paragraph that succinctly describes you. (HTML)"
     description_hint: "A longer description of yourself. Use this to give additional details that did not fit in the abstract. (HTML)"
-    links: "Links"
+    links: "Links to previous presentation decks or videos (empty if none)"
     languages_spoken: "Languages spoken"
     contact_data: "Contact data"
     edit_event_headline: "Editing event"
@@ -88,4 +88,8 @@ en:
     no_confirmation_token: "Your confirmation key is not valid. Please check your event status in the call for papers interface."
     thanks_for_confirmation: "Thank you for confirming your participation."
     confirm: "confirm"
-
+    twitter: "Twitter handle"
+    cover_travel: "Check this box if you need travel reimbursement."
+    airport_code: "Your home airport code (ex: ATL)"
+    tshirt_size: "T-shirt size (specify gender & size, ex: MALE XL)"
+    linkedin: "Linkedin URL"

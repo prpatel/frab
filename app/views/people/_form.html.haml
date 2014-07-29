@@ -11,10 +11,16 @@
     = f.input :email_public, :as => :boolean, :hint => "If set, this email address will be published in the public program."
     = f.input :include_in_mailings, hint: "Do you want to receive information about upcoming conferences by mail?"
     = dynamic_association :phone_numbers, "Phone numbers", f
-    = dynamic_association :im_accounts, "Instant messaging accounts", f
+
   = f.inputs :name => "Bio" do
     = f.input :abstract, :input_html => {:rows => 4, :class => "span6"}, :hint => "One short paragraph that succinctly describes this person. (HTML)"
     = f.input :description, :input_html => {:class => "span6"}, :hint => "A longer description of this person. Use this to give additional details that did not fit in the abstract. (HTML)"
+    = f.input :twitter_name, :hint => t("cfp.twitter")
+    = f.input :linkedin, :hint => t("cfp.linkedin")
+    = f.input :tshirt_size, :hint => t("cfp.tshirt_size")
+    = f.input :cover_travel, :hint => t("cfp.cover_travel")
+    = f.input :airport_code, :hint => t("cfp.airport_code")
+
     = f.input :note, :hint => "visibility: admin only."
     = dynamic_association :links, "Links", f
   = f.buttons do
