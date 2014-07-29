@@ -15,7 +15,7 @@
         %p.message
           Person has no user account yet and cannot login. Click on the user tab to create an account.
   .row
-    .span6 
+    .span6
       %h2 Basic information
       %p
         %b First name:
@@ -29,6 +29,23 @@
       %p
         %b Gender:
         = @person.gender
+
+      %p
+        %b Twitter:
+        = @person.twitter_name
+      %p
+        %b Linkedin:
+        = @person.linkedin
+      %p
+        %b Tshirt size:
+        = @person.tshirt_size
+      %p
+        %b Cover travel:
+        = @person.cover_travel
+      %p
+        %b Airport Code:
+        = @person.airport_code
+
 
       %p
         %b Event State:
@@ -45,7 +62,7 @@
 
 
     - if can? :manage, Person
-      .span6 
+      .span6
         %h2 Contact information
         %p
           %b Email:

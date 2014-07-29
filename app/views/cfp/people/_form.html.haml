@@ -2,7 +2,7 @@
   = f.inputs :name => "Basic" do
     = f.input :first_name
     = f.input :last_name
-    = f.input :public_name, :hint => t("cfp.public_name_hint") 
+    = f.input :public_name, :hint => t("cfp.public_name_hint")
     = f.input :gender, :collection => translated_options(Person::GENDERS)
     = f.input :avatar, :hint => t("cfp.avatar_hint")
     = dynamic_association :languages, t("cfp.languages_spoken"), f
@@ -10,10 +10,17 @@
     = f.input :email, :hint => t("cfp.email_hint")
     = f.input :email_public, :as => :boolean, :hint => t("cfp.email_public_hint")
     = dynamic_association :phone_numbers, t("cfp.phone_numbers"), f
-    = dynamic_association :im_accounts, t("cfp.im_accounts"), f
+
   = f.inputs :name => t("cfp.bio") do
-    = f.input :abstract, :input_html => {:rows => 4}, :hint => t("cfp.abstract_hint") 
+    = f.input :abstract, :input_html => {:rows => 4}, :hint => t("cfp.abstract_hint")
     = f.input :description, :hint => t("cfp.description_hint")
+
+    = f.input :twitter_name, :hint => t("cfp.twitter")
+    = f.input :linkedin, :hint => t("cfp.linkedin")
+    = f.input :tshirt_size, :hint => t("cfp.tshirt_size")
+    = f.input :cover_travel, :hint => t("cfp.cover_travel")
+    = f.input :airport_code, :hint => t("cfp.airport_code")
+
     = dynamic_association :links, t("cfp.links"), f
   = f.buttons do
     = f.commit_button :button_html => {:class => "btn primary"}
