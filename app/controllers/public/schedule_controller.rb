@@ -81,7 +81,7 @@ class Public::ScheduleController < ApplicationController
   end
 
   def promo_events
-    @events = @conference.events.where("event_type != 'other'")
+    @events = @conference.events.accepted_show
     respond_to do |format|
       format.json
     end
