@@ -35,7 +35,7 @@ class Public::ScheduleController < ApplicationController
     @all_rooms.each do |room|
       events = room.events.confirmed.no_conflicts.public.scheduled_on(@day).order(:start_time).all
       unless events.empty?
-        @events[room] = events 
+        @events[room] = events
         @skip_row[room] = 0
         @rooms << room
       end
@@ -48,7 +48,7 @@ class Public::ScheduleController < ApplicationController
       format.html
       format.pdf do
         @page_size = "A4"
-        render template: "schedule/custom_pdf" 
+        render template: "schedule/custom_pdf"
       end
     end
   end
@@ -78,6 +78,14 @@ class Public::ScheduleController < ApplicationController
 
   def speaker
     @speaker = Person.publicly_speaking_at(@conference).confirmed(@conference).find(params[:id])
+  end
+
+  def promo_events
+    @events = @conference.events.where("event_type != 'other'")
+    respond_to do |format|
+      format.json
+    end
+
   end
 
   private

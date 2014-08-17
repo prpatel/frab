@@ -26,6 +26,7 @@ Frab::Application.routes.draw do
         match "/events/:id" => "schedule#event", as: "event"
         match "/speakers" => "schedule#speakers", as: "speakers"
         match "/speakers/:id" => "schedule#speaker", as: "speaker"
+        match "/promo_events" => "schedule#promo_events", as: "events"
 
         resources :events do
           resource :feedback, controller: :feedback
@@ -36,7 +37,7 @@ Frab::Application.routes.draw do
 
         resource :session
 
-        resource :user do 
+        resource :user do
           resource :password
           resource :confirmation
         end
