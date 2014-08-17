@@ -27,6 +27,8 @@ Frab::Application.routes.draw do
         match "/speakers" => "schedule#speakers", as: "speakers"
         match "/speakers/:id" => "schedule#speaker", as: "speaker"
         match "/promo_events" => "schedule#promo_events", as: "events"
+        match "/speakers_promo" => "schedule#speakers_promo", as: "speakers"
+
 
         resources :events do
           resource :feedback, controller: :feedback

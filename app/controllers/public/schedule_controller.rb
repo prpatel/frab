@@ -76,6 +76,14 @@ class Public::ScheduleController < ApplicationController
     end
   end
 
+  def speakers_promo
+    @speakers = Person.speaking_at(@conference).order(:public_name, :first_name, :last_name)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   def speaker
     @speaker = Person.publicly_speaking_at(@conference).confirmed(@conference).find(params[:id])
   end
