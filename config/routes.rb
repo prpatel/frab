@@ -28,6 +28,7 @@ Frab::Application.routes.draw do
         match "/speakers/:id" => "schedule#speaker", as: "speaker"
         match "/promo_events" => "schedule#promo_events", as: "events"
         match "/speakers_promo" => "schedule#speakers_promo", as: "speakers"
+        match "/full_schedule" => "schedule#full_schedule#", as: "full_schedule"
 
 
         resources :events do

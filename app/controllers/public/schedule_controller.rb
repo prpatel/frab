@@ -15,6 +15,14 @@ class Public::ScheduleController < ApplicationController
     end
   end
 
+  def full_schedule
+    @days = @conference.days
+
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def style
     respond_to do |format|
       format.css
