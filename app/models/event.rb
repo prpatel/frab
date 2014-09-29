@@ -47,6 +47,7 @@ class Event < ActiveRecord::Base
   scope :without_speaker, where("speaker_count = 0")
   scope :with_speaker, where("speaker_count > 0")
   scope :accepted_show, where(self.arel_table[:state].in(%w{confirmed unconfirmed}).and(self.arel_table[:event_type].not_eq('other')))
+  scope :accepted_show_all, where(self.arel_table[:state].in(%w{confirmed unconfirmed}).and(self.arel_table[:event_type]))
 
   acts_as_indexed fields: [:title, :subtitle, :event_type, :abstract, :description, :track_name]
 
