@@ -6,6 +6,7 @@ json.speakers do
     json.abstract person.abstract
     json.description person.description
     json.twitter person.twitter_name
+    json.email person.email
     json.events person.accepted_events_as_speaker_in(@conference) do |event|
       json.id event.id
       json.title event.title
