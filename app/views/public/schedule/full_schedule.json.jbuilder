@@ -17,7 +17,7 @@ json.schedule do
         json.day_end day.end_date.iso8601
         json.rooms do
           @conference.rooms.each do |room|
-            json.set! room.name, room.events.accepted.scheduled_on(day).order(:start_time) do |event|
+            json.set! room.name, room.events.accepted_show.scheduled_on(day).order(:start_time) do |event|
               json.id event.id
               #json.logo event.logo_path
               json.date event.start_time.iso8601
