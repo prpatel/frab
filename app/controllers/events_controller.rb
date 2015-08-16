@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :not_submitter!
   after_filter :restrict_events
-  
+
   # GET /events
   # GET /events.xml
   def index
@@ -13,7 +13,10 @@ class EventsController < ApplicationController
     else
       @search = @conference.events.includes(:track).search(params[:q])
     end
-    @events = @search.result.paginate page: params[:page]
+    @events = @search.result.paginate(
+      page: params[:page],
+      per_page: 1000
+    )
 
     clean_events_attributes
     respond_to do |format|
@@ -42,7 +45,7 @@ class EventsController < ApplicationController
     else
       @events = @conference.events
     end
-    
+
     respond_to do |format|
       format.pdf
     end
@@ -50,6 +53,22 @@ class EventsController < ApplicationController
 
   # show event ratings
   def ratings
+    authorize! :create, EventRating
+    @search = @conference.events.search(params[:q])
+    @events = @search.result.paginate page: params[:page]
+    clean_events_attributes
+
+    # total ratings:
+    @events_total = @conference.events.count
+    @events_reviewed_total = @conference.events.select{|e| e.event_ratings_count != nil and e.event_ratings_count > 0 }.count
+    @events_no_review_total = @events_total - @events_reviewed_total
+
+    # current_user rated:
+    @events_reviewed = @conference.events.joins(:event_ratings).where("event_ratings.person_id" => current_user.person.id).count
+    @events_no_review = @events_total - @events_reviewed
+  end
+
+  def ratings_by_track
     authorize! :create, EventRating
     @search = @conference.events.search(params[:q])
     @events = @search.result.paginate page: params[:page]
@@ -104,7 +123,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     authorize! :read, @event
   end
-  
+
   # GET /events/new
   # GET /events/new.xml
   def new
@@ -189,7 +208,7 @@ class EventsController < ApplicationController
       return redirect_to(@event, alert: "Cannot send mails: #{ex}.")
     end
 
-    redirect_to @event, notice: 'Event was successfully updated.' 
+    redirect_to @event, notice: 'Event was successfully updated.'
   end
 
   # DELETE /events/1
@@ -219,7 +238,7 @@ class EventsController < ApplicationController
       @event.clean_event_attributes!
     end
     unless @events.nil?
-      @events.map { |event| event.clean_event_attributes! } 
+      @events.map { |event| event.clean_event_attributes! }
     end
   end
 
