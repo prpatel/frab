@@ -32,7 +32,7 @@ json.schedule do
               #json.language event.language
               json.abstract event.abstract
               #json.description event.description
-              json.persons event.speakers, :id, :full_public_name, :abstract, :twitter_name
+              json.persons event.speakers, :id, :full_public_name, :abstract, :twitter_name, :avatar_path
             end
           end
         end

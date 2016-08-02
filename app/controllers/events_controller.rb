@@ -13,7 +13,10 @@ class EventsController < ApplicationController
     else
       @search = @conference.events.includes(:track).search(params[:q])
     end
-    @events = @search.result.paginate page: params[:page]
+    @events = @search.result.paginate(
+      page: params[:page],
+      per_page: 1000
+    )
 
     clean_events_attributes
     respond_to do |format|
