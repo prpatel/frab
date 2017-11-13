@@ -13,6 +13,7 @@ class SelectionNotification < ActionMailer::Base
     @from = @conference.email
     if (@from.empty?)
       @from = Settings['from_email']
+    end
     mail(
       reply_to: @conference.email,
       to: event_person.person.email,
