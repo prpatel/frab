@@ -1,3 +1,5 @@
+# rails console production
+
  @conference = Conference.last
 @events = @conference.events.accepted.count
 @events = @conference.events.accepted.find_all_by_track_id(5).count
@@ -5,11 +7,29 @@
 
 # Count all accepted talks by track
 def print_info
-@conference = Conference.last
+@conference = Conference.find_by_acronym('ct2017')
 @tracks = @conference.tracks
 s = ""
+total_count = 0
 @tracks.each do |t|
-    s << "Track: #{t.name}, accepted: #{@conference.events.accepted.find_all_by_track_id(t.id).count} \n"
+    track_count = @conference.events.accepted.find_all_by_track_id(t.id).count
+    s << "Track: #{t.name}, accepted: #{track_count} \n"
+    total_count += track_count
+end
+puts s
+puts "total_count #{total_count}"
+end
+
+def print_session_by_track
+@conference = Conference.find_by_acronym('ct2017')
+@tracks = @conference.tracks
+s = ""
+total_count = 0
+@tracks.each do |t|
+    track_count = @conference.events.accepted.find_all_by_track_id(t.id)
+    track_count.each do |session|
+      s << "Track: #{t.name}, #{session.title} \n"
+    end
 end
 puts s
 end
@@ -25,7 +45,7 @@ Version.where(conference_id: @conference.id).where("object_changes like ? ", '%c
 
 
 def find_cover_travel_changed
-@conference = Conference.last
+@conference = Conference.find_by_acronym('ct2017')
 str = ""
 vs = Version.where(conference_id: @conference.id).where("object_changes like ? ", '%cover_travel%').order("created_at DESC")
 vs.each do |v|
@@ -49,7 +69,7 @@ end
 
 def covering_travel
   str = ""
-  @conference = Conference.last
+  @conference = Conference.find_by_acronym('ct2017')
   ps = Person.speaking_at(@conference)
   ps.each do |p|
     if p.cover_travel
@@ -57,8 +77,40 @@ def covering_travel
         phone_number = p.phone_numbers[0].phone_number
       end
 
-      str << "#{p.full_name}\t#{p.email}\t#{ phone_number}\n "
+      str << "#{p.full_name}\t#{p.email}\t#{ phone_number}\t#{ p.airport_code}\n "
     end
   end
+  puts str
+end
+
+def list_presenters
+  str = ""
+  @conference = Conference.find_by_acronym('dsct2017')
+  ps = Person.speaking_at(@conference)
+  ps.each do |p|
+      str << "#{p.full_name}\t#{p.email}\t#{ p.airport_code}\t#{p.twitter_name}\t#{p.cover_travel}\n "
+    end
+  puts str
+end
+
+tshirt_size
+
+def presenters_badge_info
+  str = ""
+  @conference = Conference.find_by_acronym('dsct2017')
+  ps = Person.speaking_at(@conference)
+  ps.each do |p|
+      str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.tshirt_size}\t#{p.twitter_name}\t#{p.cover_travel}\n "
+    end
+  puts str
+end
+
+def list_presenters
+  str = ""
+  @conference = Conference.find_by_acronym('dsct2017')
+  ps = Person.speaking_at(@conference)
+  ps.each do |p|
+      str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.airport_code}\t#{p.twitter_name}\t#{p.cover_travel}\n "
+    end
   puts str
 end
