@@ -11,6 +11,7 @@ json.speakers do
       json.id event.id
       json.title event.title
       json.abstract event.abstract
+      json.type event.event_type
     end
   end
 end
