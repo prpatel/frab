@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/frab/formtastic-bootstrap.git
-  revision: 8c18bf28d511a6846837a17bc59306304055c5f3
-  specs:
-    formtastic-bootstrap (1.2.0)
-      formtastic
-      rails (>= 3.1.0)
-
-GIT
   remote: git://github.com/frab/localized_language_select.git
   revision: 12aba5fb945cf50ea3919b3ae774d9205a6cfcc4
   specs:
@@ -22,6 +14,14 @@ GIT
     twitter-bootstrap-rails (1.4.0)
       actionpack
       railties
+
+GIT
+  remote: https://github.com/frab/formtastic-bootstrap
+  revision: 8c18bf28d511a6846837a17bc59306304055c5f3
+  specs:
+    formtastic-bootstrap (1.2.0)
+      formtastic
+      rails (>= 3.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -265,6 +265,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (~> 3.2.16)
+  rake (~> 10.2.0)
   ransack
   redcarpet
   ri_cal

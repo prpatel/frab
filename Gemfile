@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2.16'
-
+gem 'rake', '~> 10.2.0'
 gem 'mysql2'
 gem 'pg'
 gem 'sqlite3'
@@ -13,7 +13,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 gem 'cocoon'
 gem 'formtastic', '~> 2.1.0'
-gem 'formtastic-bootstrap', :git => "git://github.com/frab/formtastic-bootstrap.git"
+gem 'formtastic-bootstrap', :git => "https://github.com/frab/formtastic-bootstrap"
 gem 'gravatar-ultimate'
 gem 'haml'
 gem 'jquery-rails', '~> 1.0.19'

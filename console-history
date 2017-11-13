@@ -1,0 +1,100 @@
+  puts "This person has changed the cover_travel: #{v.created_at} #{u?.email}"
+s.each do |v|
+    end    
+  puts "This person has changed the cover_travel: #{v.created_at} #{email}"
+output
+puts output
+def output=""
+    if u?
+  output <<  "This person has changed the cover_travel: #{v.created_at} #{email}\n"
+def output
+  output.concat "This person has changed the cover_travel: #{v.created_at} #{email}\n"
+def str
+  str.concat "This person has changed the cover_travel: #{v.created_at} #{email}\n"
+    puts "This person has changed the cover_travel: #{v.created_at} #{email}\n"
+    email = u.email
+    str << "This person has changed the cover_travel: #{v.created_at} #{email}\n"
+    str << "This person has changed the cover_travel: #{v.created_at} #{email} \\n "
+str
+    str << "This person has changed the cover_travel: #{v.created_at} #{email} \n "
+      person = Person.find_by_user(u)
+Person.find_by_user_id(12)
+Person.find_by_user_id(13)
+    if u 
+    str << "This person has changed the cover_travel: #{v.created_at} #{email} cover_travel state: #{person.cover_travel} \n "
+    str << "This person has changed the cover_travel: #{v.created_at} #{email} cover_travel state: #{cover_travel} \n "
+def find_cover_travel_changed
+str = ""
+vs = Version.where(conference_id: @conference.id).where("object_changes like ? ", '%cover_travel%').order("created_at DESC")
+vs.each do |v|
+  if v.object_changes.include?('cover_travel')
+    u = User.find_by_id(Integer(v.whodunnit))
+    if u
+      email = u.email
+      person = Person.find_by_user_id(u.id)
+      if person
+        cover_travel = person.cover_travel
+    str << "Cover_travel state: #{v.created_at} #{email} cover_travel state: #{cover_travel} \n "
+puts str
+v.last
+v
+ps.count
+ps = Person.speaking_at(@conference).count
+ps.last
+ps.speaking_at(@conference)
+ps = Person.speaking_at(@conference).order_by('updated_at')
+ps = Person.speaking_at(@conference).order('updated_at DESC')
+  ps.each do |s|
+c
+    str << "Cover_travel: #{p.email} cover_travel state: #{p.cover_travel} \n "
+Person.last
+    str << "Cover_travel: #{p.full_name} #{p.email} cover_travel state: #{p.cover_travel} \n "
+find_cover_travel_changed
+    str << "#{p.full_name} #{p.phone_numbers} #{p.email} \n "
+    str << "#{p.full_name} #{p.phone_numbers?[0].phone_number} #{p.email} \n "
+      phone_number = p.try {|obj| obj.phone_numbers[0].phone_number}
+co
+      phone_number = p.try {|p| p.phone_numbers[0].phone_number}
+      if p.phone_numbers
+          phone_number = p.phone_numbers[0].phone_number
+Person.speaking_at(@conference)
+ps = Person.speaking_at(@conference)
+ps.first
+ps.first.phone_numbers
+ps.first.phone_numbers[0]
+ps.first.phone_numbers[0].phone_number
+      if p.phone_numbers?
+        #  phone_number = p.phone_numbers[0].phone_number
+      str << "#{p.full_name} #{ phone_number} #{p.email} \n "
+      str << "#{p.full_name} #{p.email} #{ phone_number}\n "
+      str << "#{p.full_name},#{p.email},#{ phone_number}\n "
+def covering_travel
+    if p.cover_travel
+      if p.phone_numbers.present?
+        phone_number = p.phone_numbers[0].phone_number
+      end
+      str << "#{p.full_name}\t#{p.email}\t#{ phone_number}\n "
+covering_travel
+def print_info
+@tracks = @conference.tracks
+s = ""
+@tracks.each do |t|
+    s << "Track: #{t.name}, accepted: #{@conference.events.accepted.find_all_by_track_id(t.id).count} \n"
+puts s
+print_info
+ @conference = Conference.last
+Events.count
+Event.count
+  end
+      str << "#{p.full_name}\t#{p.email}\t#{ airport_code}\n "
+@conference = Conference.last
+def list_presenters
+  str = ""
+  @conference = Conference.last
+  ps = Person.speaking_at(@conference)
+  ps.each do |p|
+      str << "#{p.full_name}\t#{p.email}\t#{ p.airport_code}\n "
+    end
+  puts str
+end
+list_presenters
