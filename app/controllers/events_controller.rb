@@ -55,7 +55,10 @@ class EventsController < ApplicationController
   def ratings
     authorize! :create, EventRating
     @search = @conference.events.search(params[:q])
-    @events = @search.result.paginate page: params[:page]
+    @events = @search.result.paginate(
+      page: params[:page],
+      per_page: 1000
+    )
     clean_events_attributes
 
     # total ratings:
