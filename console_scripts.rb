@@ -7,7 +7,7 @@
 
 # Count all accepted talks by track
 def print_info
-@conference = Conference.find_by_acronym('ct2017')
+@conference = Conference.find_by_acronym('dn2018')
 @tracks = @conference.tracks
 s = ""
 total_count = 0
@@ -111,6 +111,29 @@ def list_presenters
   ps = Person.speaking_at(@conference)
   ps.each do |p|
       str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.airport_code}\t#{p.twitter_name}\t#{p.cover_travel}\n "
+    end
+  puts str
+end
+
+# == all people in conference
+
+def list_all_submitters
+  str = ""
+  @conference = Conference.find_by_acronym('dn2018')
+  ps = Person.involved_in(@conference).where(:"event_people.event_role" => ["speaker", "moderator"]).where('events.state NOT IN (?)',  ["unconfirmed", "confirmed"]).group(:"people.id")
+  ps.each do |p|
+      any_accepted = false
+      p.events.each do |event|
+        # puts "#{p.public_name}, #{event.title}, #{event.state} "
+        if (event.state == 'unconfirmed' || event.state == 'confirmed')
+          any_accepted = true
+        else
+
+        end
+      end
+      if (any_accepted == false)
+        str << "#{p.first_name}\t#{p.last_name}\t#{p.cover_travel}\t#{p.email}\t#{ p.airport_code}\thttps://cfp.devnexus.com/en/people/#{p.id}?conference_acronym=dn2018\n "
+      end
     end
   puts str
 end

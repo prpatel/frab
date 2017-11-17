@@ -29,7 +29,10 @@ class SelectionNotification < ActionMailer::Base
     @locale = @person.locale_for_mailing(@conference)
     @notification = @conference.call_for_papers.notifications.with_locale(@locale).first
     raise "Notification for #{@locale} not found" if @notification.nil?
-
+    @from = @conference.email
+    if (@from.empty?)
+      @from = Settings['from_email']
+    end
     mail(
       from: @from,
       reply_to: @conference.email,
