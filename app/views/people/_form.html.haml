@@ -3,7 +3,6 @@
     = f.input :first_name
     = f.input :last_name
     = f.input :public_name, :hint => "This is the name that will be shown in the public program."
-    = f.input :gender, :collection => Person::GENDERS
     = f.input :avatar, :hint => "Upload a new picture."
     = dynamic_association :languages, "Languages spoken", f
   = f.inputs :name => "Contact Data" do
