@@ -110,7 +110,7 @@ def list_presenters
   @conference = Conference.find_by_acronym('dsct2017')
   ps = Person.speaking_at(@conference)
   ps.each do |p|
-      str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.airport_code}\t#{p.twitter_name}\t#{p.cover_travel}\n "
+      str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.airport_code}\t@#{p.twitter_name}\t#{p.cover_travel}\n "
     end
   puts str
 end
