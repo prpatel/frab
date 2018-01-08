@@ -104,6 +104,27 @@ class ReportsController < ApplicationController
       @data << row
       @search_count = row.inject(:+)
 
+    when 'all_presenter_info'
+      @labels = %w{FirsName LastName Email Tshirt Twitter CoverTravel}
+      @data = []
+      row = []
+      ps = Person.speaking_at(@conference)
+      ps.each do |p|
+          row << [p.first_name, p.last_name, p.email, p.tshirt_size, p.twitter_name,p.cover_travel]
+          @data << row
+      end
+
+
+    when 'accepted_events_by_track'
+      @data = []
+      row = []
+      @labels = @conference.tracks.collect { |t| t.name }
+      @labels.each { |track|
+        row << @conference.events.accepted.joins(:track).where(tracks: { name: track}).count
+      }
+      @data << row
+      @search_count = row.inject(:+)
+
     when 'events_by_track'
       @data = []
       row = []

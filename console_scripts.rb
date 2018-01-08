@@ -6,29 +6,49 @@
 @events = @conference.events.find_all_by_track_id(5).count
 
 # Count all accepted talks by track
-def print_info
-@conference = Conference.find_by_acronym('dn2018')
-@tracks = @conference.tracks
-s = ""
-total_count = 0
-@tracks.each do |t|
-    track_count = @conference.events.accepted.find_all_by_track_id(t.id).count
-    s << "Track: #{t.name}, accepted: #{track_count} \n"
-    total_count += track_count
-end
-puts s
-puts "total_count #{total_count}"
+  def track_info
+  @conference = Conference.find_by_acronym('jct2018')
+  @tracks = @conference.tracks
+  s = ""
+  total_count = 0
+  @tracks.each do |t|
+      track_count = @conference.events.accepted.find_all_by_track_id(t.id).count
+      s << "Track: #{t.name}, accepted: #{track_count} \n"
+      total_count += track_count
+  end
+  puts s
+  puts "total_count #{total_count}"
+  end
+
+def change_session_time
+    @conference = Conference.find_by_acronym('dn2018')
+    # Event.column_names
+    all_sessions = @conference.events.accepted.each do |s|
+      puts "#{s.time_slots}, #{s.title} "
+      # if (s.time_slots < 32)
+      #   s.time_slots = 4
+      #   s.save
+      # end
+    end
 end
 
+
 def print_session_by_track
-@conference = Conference.find_by_acronym('ct2017')
+@conference = Conference.find_by_acronym('vueus2018')
 @tracks = @conference.tracks
 s = ""
 total_count = 0
 @tracks.each do |t|
     track_count = @conference.events.accepted.find_all_by_track_id(t.id)
     track_count.each do |session|
-      s << "Track: #{t.name}, #{session.title} \n"
+      if (session.speakers[0])
+        speaker_name = session.speakers[0].public_name
+      else
+        speaker_name = ""
+      end
+      # s << "#{t.name}, #{speaker_name}, #{session.title}\n"
+      # s << "#{session.title}\n"
+      s << "#{speaker_name}, #{session.title}\n"
     end
 end
 puts s
@@ -45,7 +65,7 @@ Version.where(conference_id: @conference.id).where("object_changes like ? ", '%c
 
 
 def find_cover_travel_changed
-@conference = Conference.find_by_acronym('ct2017')
+@conference = Conference.find_by_acronym('jct2018')
 str = ""
 vs = Version.where(conference_id: @conference.id).where("object_changes like ? ", '%cover_travel%').order("created_at DESC")
 vs.each do |v|
@@ -69,7 +89,7 @@ end
 
 def covering_travel
   str = ""
-  @conference = Conference.find_by_acronym('ct2017')
+  @conference = Conference.find_by_acronym('jct2018')
   ps = Person.speaking_at(@conference)
   ps.each do |p|
     if p.cover_travel
@@ -85,7 +105,7 @@ end
 
 def list_presenters
   str = ""
-  @conference = Conference.find_by_acronym('dsct2017')
+  @conference = Conference.find_by_acronym('jct2018')
   ps = Person.speaking_at(@conference)
   ps.each do |p|
       str << "#{p.full_name}\t#{p.email}\t#{ p.airport_code}\t#{p.twitter_name}\t#{p.cover_travel}\n "
@@ -107,7 +127,7 @@ end
 
 def list_presenters
   str = ""
-  @conference = Conference.find_by_acronym('dsct2017')
+  @conference = Conference.find_by_acronym('vueus2018')
   ps = Person.speaking_at(@conference)
   ps.each do |p|
       str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.airport_code}\t@#{p.twitter_name}\t#{p.cover_travel}\n "
@@ -117,15 +137,17 @@ end
 
 # == all people in conference
 
-def list_all_submitters
+
+def list_all_submitters_rejected
   str = ""
-  @conference = Conference.find_by_acronym('dn2018')
+  @conference = Conference.find_by_acronym('vueus2018')
   ps = Person.involved_in(@conference).where(:"event_people.event_role" => ["speaker", "moderator"]).where('events.state NOT IN (?)',  ["unconfirmed", "confirmed"]).group(:"people.id")
   ps.each do |p|
       any_accepted = false
+
       p.events.each do |event|
-        # puts "#{p.public_name}, #{event.title}, #{event.state} "
-        if (event.state == 'unconfirmed' || event.state == 'confirmed')
+        puts "#{p.public_name}, #{event.title}, #{event.state}, #{event.conference} "
+        if ((event.state == 'unconfirmed' || event.state == 'confirmed' ) && event.conference == @conference)
           any_accepted = true
         else
 
