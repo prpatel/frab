@@ -110,8 +110,7 @@ class ReportsController < ApplicationController
       row = []
       ps = Person.speaking_at(@conference)
       ps.each do |p|
-          row << [p.first_name, p.last_name, p.email, p.tshirt_size, p.twitter_name,p.cover_travel]
-          @data << row
+          @data << [p.first_name, p.last_name, p.email, p.tshirt_size, p.twitter_name,p.cover_travel]
       end
 
 
