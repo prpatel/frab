@@ -95,11 +95,11 @@ Frab::Application.configure do
  config.action_mailer.smtp_settings = {
    address: 'smtp.mailgun.org',
    port: "587",
-   domain: "connect.tech",
+   domain: "cfp2.connectevents.io",
    authentication: "login",
    enable_starttls_auto: true,
-   user_name: 'postmaster@connect.tech',
-   password: "192b582c74fa441bf98cb509d49db295"
+   user_name: 'postmaster@cfp2.connectevents.io',
+   password: "1a8bb8ff1cc91b2269bff343dc417b3e-e89319ab-ecd808e3"
 
    # user_name: ENV["GMAIL_SMTP_USER"],
    # password: ENV["GMAIL_SMTP_PASSWORD"]
