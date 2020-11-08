@@ -112,6 +112,28 @@ class ReportsController < ApplicationController
       ps.each do |p|
           @data << [p.first_name, p.last_name, p.email, p.tshirt_size, p.twitter_name, p.airport_code, p.cover_travel]
       end
+      
+      when 'list_all_submitters_rejected'
+        @labels = %w{FirsName LastName Email AirportCode CoverTravel}
+        @data = []
+        row = []
+        ps = Person.involved_in(@conference).where(:"event_people.event_role" => ["speaker", "moderator"]).where('events.state NOT IN (?)',  ["unconfirmed", "confirmed"]).group(:"people.id")
+        ps.each do |p|
+            any_accepted = false
+
+            p.events.each do |event|
+              if ((event.state == 'unconfirmed' || event.state == 'confirmed' ) && event.conference == @conference)
+                any_accepted = true
+              else
+
+              end
+            end
+            if (any_accepted == false)
+              @data << [p.first_name, p.last_name, p.email, p.airport_code, p.cover_travel]
+            end
+          end
+        puts str
+      end
 
 
     when 'accepted_events_by_track'
