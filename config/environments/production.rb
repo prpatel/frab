@@ -99,8 +99,7 @@ Frab::Application.configure do
    authentication: "login",
    enable_starttls_auto: true,
    user_name: 'postmaster@cfp2.connectevents.io',
-   password: "1a8bb8ff1cc91b2269bff343dc417b3e-e89319ab-ecd808e3"
-
+   password: ENV["MAIL_GUN_PASSWORD"]
    # user_name: ENV["GMAIL_SMTP_USER"],
    # password: ENV["GMAIL_SMTP_PASSWORD"]
  }
