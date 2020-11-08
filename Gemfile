@@ -2,24 +2,27 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2.16'
 gem 'rake', '~> 10.2.0'
-gem 'mysql2'
-gem 'pg'
+# gem 'mysql2'
+# gem 'pg', '~> 0.17.1'
+gem 'pg', '~> 0.11'
+# gem 'pg'
 gem 'sqlite3'
-
+gem 'activerecord-postgresql-adapter'
 gem 'acts_as_commentable'
 gem 'acts_as_indexed'
 gem 'barista'
-gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'cancan'
 gem 'cocoon'
 gem 'formtastic', '~> 2.1.0'
 gem 'formtastic-bootstrap', :git => "https://github.com/frab/formtastic-bootstrap"
 gem 'gravatar-ultimate'
-gem 'haml'
+gem 'haml', '~> 4.0.7'
 gem 'jquery-rails', '~> 1.0.19'
 gem 'json'
 gem 'jbuilder'
-gem 'localized_language_select', '0.2.0', :git => "git://github.com/frab/localized_language_select.git"
+# gem 'localized_language_select', '0.2.0', :git => "git://github.com/frab/localized_language_select.git"
 gem 'nokogiri'
 gem 'paperclip', '< 3.0'
 gem 'paper_trail', '2.3.3'
@@ -37,6 +40,7 @@ group :development, :test do
   gem 'bullet'
   gem 'ruby-debug', :platforms => :mri_18
   gem 'ruby-debug19', :platforms => :mri_19
+  gem 'test-unit', '~> 3.0'
 end
 
 group :test do

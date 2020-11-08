@@ -61,7 +61,7 @@ Frab::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => 'connect.tech' }
+  config.action_mailer.default_url_options = { :host => 'cfp.connectevents.io' }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -95,7 +95,7 @@ Frab::Application.configure do
  config.action_mailer.smtp_settings = {
    address: 'smtp.mailgun.org',
    port: "587",
-   domain: "cfp2.connectevents.io",
+   domain: "cfp.connectevents.io",
    authentication: "login",
    enable_starttls_auto: true,
    user_name: 'postmaster@cfp2.connectevents.io',

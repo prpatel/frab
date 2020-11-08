@@ -127,7 +127,7 @@ end
 
 def list_presenters
   str = ""
-  @conference = Conference.find_by_acronym('vueus2018')
+  @conference = Conference.find_by_acronym('vueus2020')
   ps = Person.speaking_at(@conference)
   ps.each do |p|
       str << "#{p.first_name}\t#{p.last_name}\t#{p.email}\t#{ p.airport_code}\t@#{p.twitter_name}\t#{p.cover_travel}\n "
@@ -140,7 +140,7 @@ end
 
 def list_all_submitters_rejected
   str = ""
-  @conference = Conference.find_by_acronym('vueus2018')
+  @conference = Conference.find_by_acronym('uiarchconf2020')
   ps = Person.involved_in(@conference).where(:"event_people.event_role" => ["speaker", "moderator"]).where('events.state NOT IN (?)',  ["unconfirmed", "confirmed"]).group(:"people.id")
   ps.each do |p|
       any_accepted = false
