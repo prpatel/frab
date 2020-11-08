@@ -140,7 +140,11 @@ end
 
 def list_all_submitters_rejected
   str = ""
+<<<<<<< HEAD
   @conference = Conference.find_by_acronym('uiarchconf2020')
+=======
+  @conference = Conference.find_by_acronym('ct2018')
+>>>>>>> refs/remotes/origin/master
   ps = Person.involved_in(@conference).where(:"event_people.event_role" => ["speaker", "moderator"]).where('events.state NOT IN (?)',  ["unconfirmed", "confirmed"]).group(:"people.id")
   ps.each do |p|
       any_accepted = false
@@ -154,7 +158,7 @@ def list_all_submitters_rejected
         end
       end
       if (any_accepted == false)
-        str << "#{p.first_name}\t#{p.last_name}\t#{p.cover_travel}\t#{p.email}\t#{ p.airport_code}\thttps://cfp.devnexus.com/en/people/#{p.id}?conference_acronym=dn2018\n "
+        str << "#{p.first_name}\t#{p.last_name}\t#{p.cover_travel}\t#{p.email}\t#{ p.airport_code}\thttps://cfp.connectevents.io/en/people/#{p.id}?conference_acronym=ct2018\n "
       end
     end
   puts str
