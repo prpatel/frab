@@ -112,7 +112,6 @@ class ReportsController < ApplicationController
       ps.each do |p|
           @data << [p.first_name, p.last_name, p.email, p.tshirt_size, p.twitter_name, p.airport_code, p.cover_travel]
       end
-    end
       
     when 'list_all_submitters_rejected'
       @labels = %w{FirsName LastName Email AirportCode CoverTravel}
@@ -133,7 +132,6 @@ class ReportsController < ApplicationController
             @data << [p.first_name, p.last_name, p.email, p.airport_code, p.cover_travel]
           end
         end
-    end
 
 
     when 'accepted_events_by_track'
