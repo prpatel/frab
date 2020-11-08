@@ -85,8 +85,8 @@ Frab::Application.configure do
 #   domain: "connect-js.com",
 #   authentication: "plain",
 #   enable_starttls_auto: true,
-#   user_name: 'pratik.r.patel@gmail.com',
-#   password: "XSDBGTn_BPxrKSmMsBWwQQ"
+#   user_name: 'something@gmail.com',
+#   password: ""
 
    # user_name: ENV["GMAIL_SMTP_USER"],
    # password: ENV["GMAIL_SMTP_PASSWORD"]
